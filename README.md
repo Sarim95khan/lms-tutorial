@@ -6,3 +6,4 @@ This is a followup for LMS tutorial by AmigoCode
 3. Create 2 groups : 1. (dashboard) 2. Auth
    Auth will be available to all
    dashboard will be protected and only made available for sign in users
+4. Clerk Authentication:

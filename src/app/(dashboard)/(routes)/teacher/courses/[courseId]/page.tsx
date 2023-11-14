@@ -1,6 +1,11 @@
+import { IconBadge } from '@/components/icon-badge';
 import { db } from '@/db/schema/prisma';
 import { auth } from '@clerk/nextjs';
+import { LayoutDashboard } from 'lucide-react';
 import { redirect } from 'next/navigation';
+import TitleFormPage from './_component/title-form';
+import DescriptionPage from './_component/description-form';
+import ImageFormPage from './_component/image-form';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -16,7 +21,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   }
   const requiredFields = [
     course.title,
-    course.decription,
+    course.description,
     course.imageUrl,
     course.price,
     course.categoryId,
@@ -28,15 +33,26 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const completionText = `(${completedFields}/${totalFields})`;
 
   const pageName = params.courseId;
+
   return (
     <div className="p-6">
       <div className="flex items-center justify-between">
-        <div className="flex flex-col gap-x-2">
+        <div className="flex flex-col gap-y-2">
           <h1 className="text-2xl font-medium">Course Setup</h1>
           <p className="text-sm text-slate-700">
-            {' '}
             Completed fields {completionText}
           </p>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+        <div>
+          <div className="flex items-center gap-x-2">
+            <IconBadge icon={LayoutDashboard} size="sm" />
+            <h2 className="text-xl">Customize your course</h2>
+          </div>
+          <TitleFormPage initialData={course} courseId={course.id} />
+          <DescriptionPage initialData={course} courseId={course.id} />
+          <ImageFormPage initialData={course} courseId={course.id} />
         </div>
       </div>
     </div>

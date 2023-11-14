@@ -7,3 +7,5 @@ This is a followup for LMS tutorial by AmigoCode
    Auth will be available to all
    dashboard will be protected and only made available for sign in users
 4. Clerk Authentication:
+
+5.Uploadthing for uploading docs,videos (For Next.js Developers)
